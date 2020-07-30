@@ -1,0 +1,81 @@
+---
+title: "STAT 340: Linear Models in Matrix Form"
+author: "Marie Ozanne"
+date: ""
+# header-includes:
+#  - \usepackage{fancyhdr}
+#  - \pagestyle{fancy}
+output: pdf_document
+  
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Example: Simple linear regression with $n$ observations
+
+### Familiar way to express this model:
+
+For $i=1,...,n$, 
+
+$$
+Y_i= \beta_0 + \beta_1x_{i1} + \epsilon_i,
+$$
+
+where $\epsilon_i \sim Normal(0, \ \sigma_\epsilon^2)$.
+
+### Matrix formulation:
+
+#### Step 1: Set up system of equations
+
+\begin{align*}
+y_1 &= \beta_0 + x_{11}\beta_1 + \epsilon_1\\
+y_2 &= \beta_0 + x_{21}\beta_1 + \epsilon_2\\
+ &\vdots \\
+y_n &= \beta_0 + x_{n1}\beta_1 + \epsilon_n\\
+\end{align*}
+
+#### Step 2: Reorganize system of equations into matrix form
+
+$$
+\begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_n  \end{bmatrix} = \begin{bmatrix} 1 & x_{11} \\ 1 & x_{21} \\ \vdots & \vdots \\ 1 & x_{n1} \end{bmatrix}\begin{bmatrix}\beta_0 \\ \beta_1 \end{bmatrix} + \begin{bmatrix}\epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{bmatrix},
+$$
+
+where $\begin{bmatrix}\epsilon_1 & \epsilon_2 & \cdots & \epsilon_n \end{bmatrix}'\sim Normal_n\left(\begin{bmatrix}0 & 0 & \cdots & 0 \end{bmatrix}', \sigma_\epsilon^2\begin{bmatrix}1 & 0 & \cdots & 0 \\ 0  & 1 & \cdots & 0\\ \vdots & \vdots & \ddots & \vdots\\0 & 0  & \cdots & 1\end{bmatrix}\right)$.
+
+#### Step 3: Rewrite in compact matrix form
+
+$$
+\underbrace{\mathbf{y}}_{(n\times 1)}=\begin{bmatrix}\mathbf{1} & \mathbf{x}'_1 \end{bmatrix}\boldsymbol{\beta}=\underbrace{\mathbf{X}}_{n\times 2}\underbrace{\boldsymbol{\beta}}_{2\times 1}+\underbrace{\boldsymbol{\epsilon}}_{n\times 1},
+$$
+where $\mathbf{\epsilon}\sim Normal_n(\mathbf{0}_n, \sigma_\epsilon^2\mathbf{I}_n)$.
+
+\newpage
+
+## Practice 
+
+#### Rewrite the following models in matrix notation. Please show all three steps as above for at least the first practice problem. If you feel sufficiently comfortable after that, you do not need to show all of your steps. Make sure to use clear and consistent notation, and be sure to specify the dimensions of your vectors and matrices (this helps you to keep track of your notation).
+
+### Practice 1
+
+For $i=1,...,5$,
+
+$$
+Y_i=\beta_0 + \beta_1x_{i1}+\beta_2x_{i2} + \epsilon_i,
+$$
+where $\epsilon_i \sim Normal(0, \ \sigma_\epsilon^2)$.
+
+\newpage
+
+### Practice 2
+
+Something with indicator variables -- an ANOVA model
+
+\newpage
+
+### Practice 3
+
+#### Recall in ANOVA, we often pose questions that lead
